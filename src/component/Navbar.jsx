@@ -25,45 +25,39 @@ export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <>
-      <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
-        <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
-          <IconButton
-            size={"md"}
-            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-            aria-label={"Open Menu"}
-            display={{ md: "none" }}
-            onClick={isOpen ? onClose : onOpen}
-          />
-          <HStack spacing={8} alignItems={"center"}>
-            <Link to="/">Indonesia</Link>
-            <HStack
-              as={"nav"}
-              spacing={4}
-              display={{ base: "none", md: "flex" }}
-            >
-              {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
-              ))}
-            </HStack>
+    <Box bg={useColorModeValue("gray.100", "gray.900")} px={"40"}>
+      <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
+        <IconButton
+          size={"md"}
+          icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+          aria-label={"Open Menu"}
+          display={{ md: "none" }}
+          onClick={isOpen ? onClose : onOpen}
+        />
+        <HStack spacing={8} alignItems={"center"}>
+          <Link to="/">Indonesia</Link>
+          <HStack as={"nav"} spacing={4} display={{ base: "none", md: "flex" }}>
+            {Links.map((link) => (
+              <NavLink key={link}>{link}</NavLink>
+            ))}
           </HStack>
-          <Flex alignItems={"center"}>
-            <Menu>
-              <MenuButton
-                as={Button}
-                rounded={"full"}
-                variant={"link"}
-                cursor={"pointer"}
-                minW={0}
-              ></MenuButton>
-            </Menu>
-          </Flex>
-          <Box>
-            <Input width={200} placeholder="Basic usage" />
-            <Button colorScheme="blue">Cari Berita</Button>{" "}
-          </Box>
+        </HStack>
+        <Flex alignItems={"center"}>
+          <Menu>
+            <MenuButton
+              as={Button}
+              rounded={"full"}
+              variant={"link"}
+              cursor={"pointer"}
+              minW={0}
+            ></MenuButton>
+          </Menu>
         </Flex>
-      </Box>
-    </>
+        <Flex>
+          <Input width={200} placeholder="Search..." mr={2} backgroundColor="white" />
+          <Button colorScheme="blue">Cari Berita</Button>{" "}
+        </Flex>
+      </Flex>
+    </Box>
   );
 }
