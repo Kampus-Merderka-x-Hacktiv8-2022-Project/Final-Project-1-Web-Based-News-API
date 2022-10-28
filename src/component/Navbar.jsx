@@ -11,7 +11,7 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Links = ["Programming", "COVID-19", "Saved"];
 
@@ -23,6 +23,14 @@ const NavLink = ({ children }) => (
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const navigate = useNavigate();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+
+    navigate(`/search/${data.get("search")}`)
+  };
 
   return (
     <Box bg={useColorModeValue("gray.100", "gray.900")} px={"40"}>
@@ -53,10 +61,21 @@ export default function Navbar() {
             ></MenuButton>
           </Menu>
         </Flex>
-        <Flex>
-          <Input width={200} placeholder="Search..." mr={2} backgroundColor="white" />
-          <Button colorScheme="blue">Cari Berita</Button>{" "}
-        </Flex>
+        <form
+          onSubmit={(e) => handleSubmit(e)}
+          style={{ display: "flex", alignItems: "center" }}
+        >
+          <Input
+            width={200}
+            placeholder="Search..."
+            mr={2}
+            backgroundColor="white"
+            name="search"
+          />
+          <Button type="submit" colorScheme="blue">
+            Cari Berita
+          </Button>{" "}
+        </form>
       </Flex>
     </Box>
   );

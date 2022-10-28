@@ -4,10 +4,6 @@ import Card from "../component/Card";
 
 export default function Indonesia() {
   const [newsData, setNewsData] = React.useState([]);
-  const date = new Date();
-  const monthAgo = new Date(
-    date.setMonth(date.getMonth() - 1)
-  ).toLocaleDateString("en-CA");
 
   React.useEffect(() => {
     (async () => {
@@ -16,11 +12,13 @@ export default function Indonesia() {
       ).then((response) => response.json());
       setNewsData(newsData.articles);
     })();
-  }, [monthAgo]);
+  }, []);
 
   return (
     <Grid mx={40} templateColumns="repeat(3, 1fr)" gap={10}>
-      {newsData ? newsData.map((item, id) => <Card newsDataItem={item} key={id} />) : null}
+      {newsData
+        ? newsData.map((item, id) => <Card newsDataItem={item} key={id} />)
+        : null}
     </Grid>
   );
 }

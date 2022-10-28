@@ -7,9 +7,24 @@ import {
   useColorModeValue,
   Image,
   HStack,
+  Button,
 } from "@chakra-ui/react";
+import { useDispatch, useSelector } from "react-redux";
+import { addNews, deleteNews } from "../redux/slice/savedNewsSlice";
 
 export default function Card({ newsDataItem }) {
+  const dispatch = useDispatch();
+
+  const savedNews = useSelector((state) => state.savedNews);
+
+  const handleSaveNews = () => {
+    dispatch(addNews(newsDataItem));
+  };
+
+  const handleDeleteNews = (url) => {
+    dispatch(deleteNews(url));
+  };
+
   return (
     <Center py={6}>
       <Box
@@ -61,10 +76,19 @@ export default function Card({ newsDataItem }) {
           <Text color={"gray.500"}>Feb 08, 2021</Text>
         </Stack>
 
-        <HStack mt={2}>
-          <a href={newsDataItem?.url} target="_blank">
+        <HStack mt={2} justifyContent={"space-between"}>
+          <a href={newsDataItem?.url} target="_blank" rel="noreferrer">
             News Page
           </a>
+          {savedNews.some((e) => e.url === newsDataItem.url) ? (
+            <Button h={8} onClick={() => handleDeleteNews(newsDataItem.url)}>
+              Unsave
+            </Button>
+          ) : (
+            <Button h={8} onClick={handleSaveNews}>
+              Save
+            </Button>
+          )}
         </HStack>
       </Box>
     </Center>
