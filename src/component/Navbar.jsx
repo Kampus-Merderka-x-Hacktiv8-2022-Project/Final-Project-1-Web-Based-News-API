@@ -9,8 +9,9 @@ import {
   useDisclosure,
   useColorModeValue,
   Input,
+  useColorMode,
 } from "@chakra-ui/react";
-import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { Link, useNavigate } from "react-router-dom";
 
 const Links = ["Programming", "COVID-19", "Saved"];
@@ -23,6 +24,7 @@ const NavLink = ({ children }) => (
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { colorMode, toggleColorMode } = useColorMode();
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
@@ -69,13 +71,16 @@ export default function Navbar() {
             width={200}
             placeholder="Search..."
             mr={2}
-            backgroundColor="white"
+            backgroundColor={'Background'}
             name="search"
           />
           <Button type="submit" colorScheme="blue">
             Cari Berita
           </Button>{" "}
         </form>
+        <Button onClick={toggleColorMode}>
+            {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+        </Button>
       </Flex>
     </Box>
   );

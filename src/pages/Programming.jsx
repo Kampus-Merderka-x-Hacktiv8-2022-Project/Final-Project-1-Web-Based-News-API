@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid } from "@chakra-ui/react";
+import { Container, Grid, Heading } from "@chakra-ui/react";
 import Card from "../component/Card";
 
 const date = new Date();
@@ -20,10 +20,22 @@ export default function Programming() {
   }, []);
 
   return (
-    <Grid mx={40} templateColumns="repeat(3, 1fr)" gap={10}>
-      {newsData
-        ? newsData.map((item, id) => <Card newsDataItem={item} key={id} />)
-        : null}
-    </Grid>
+    <Container maxW={'full'}>
+      <Heading
+        alignContent={'center'}
+        alignSelf={'center'}
+        alignItems={'center'}
+        textAlign={'center'} 
+        align={'center'} 
+        justify={'center'}
+        fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}>
+        Programming
+      </Heading>
+      <Grid mx={40} templateColumns="repeat(3, 1fr)" gap={10}>
+        {newsData
+          ? newsData.map((item, id) => <Card newsDataItem={item} key={id} />)
+          : null}
+      </Grid>
+    </Container>
   );
 }

@@ -81,11 +81,11 @@ export default function Card({ newsDataItem }) {
             News Page
           </a>
           {savedNews.some((e) => e.url === newsDataItem.url) ? (
-            <Button h={8} onClick={() => handleDeleteNews(newsDataItem.url)}>
+            <Button h={8} bgColor={'red.600'} onClick={() => handleDeleteNews(newsDataItem.url)}>
               Unsave
             </Button>
           ) : (
-            <Button h={8} onClick={handleSaveNews}>
+            <Button h={8} bgColor={'blue.600'} onClick={handleSaveNews}>
               Save
             </Button>
           )}
