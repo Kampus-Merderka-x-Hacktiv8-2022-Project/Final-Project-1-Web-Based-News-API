@@ -23,7 +23,7 @@ const reducer = combineReducers({
 const persistConfig = {
   key: "root",
   storage,
-  // blacklist: ["newsByQuery", "newsByCountry"],
+  blacklist: ["newsByQuery", "newsByCountry"],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducer);
