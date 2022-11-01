@@ -50,26 +50,28 @@ export default function Navbar() {
             ))}
           </HStack>
         </HStack>
-        <form
-          onSubmit={(e) => handleSubmit(e)}
-          style={{ display: "flex", alignItems: "center" }}
-        >
-          <Input
-            width={200}
-            placeholder="Search..."
-            mr={2}
-            backgroundColor={"Background"}
-            name="search"
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
-          />
-          <Button type="submit" colorScheme="blue">
-            Cari Berita
-          </Button>{" "}
-        </form>
-        <Button onClick={toggleColorMode}>
-          {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
-        </Button>
+        <HStack>
+          <form
+            onSubmit={(e) => handleSubmit(e)}
+            style={{ display: "flex", alignItems: "center" }}
+          >
+            <Input
+              width={200}
+              placeholder="Search..."
+              mr={2}
+              backgroundColor={"Background"}
+              name="search"
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+            />
+            <Button type="submit" colorScheme="blue">
+              Cari Berita
+            </Button>{" "}
+          </form>
+          <Button onClick={toggleColorMode}>
+            {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+          </Button>
+        </HStack>
       </Flex>
     </Box>
   );
