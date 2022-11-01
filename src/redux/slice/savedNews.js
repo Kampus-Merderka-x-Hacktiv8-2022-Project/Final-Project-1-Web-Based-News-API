@@ -5,7 +5,7 @@ export const savedNewsSlice = createSlice({
   initialState: [],
   reducers: {
     addNews: (state, action) => {
-      state.push(action.payload);
+      return[action.payload, ...state];
     },
     deleteNews: (state, action) => {
       return state.filter((e) => e.url !== action.payload);
