@@ -73,7 +73,7 @@ export default function Card({ newsDataItem }) {
 
         <Stack mt={2} spacing={0} fontSize={"sm"}>
           <Text fontWeight={600}>{newsDataItem.author || "unknown"}</Text>
-          <Text color={"gray.500"}>Feb 08, 2021</Text>
+          <Text color={"gray.500"}>{new Date(newsDataItem.publishedAt).toLocaleDateString("en-US", {day: "numeric", month: "short", year: "numeric"})}</Text>
         </Stack>
 
         <HStack mt={2} justifyContent={"space-between"}>
