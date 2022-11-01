@@ -1,10 +1,10 @@
 import React from "react";
 import { Container, Grid, Heading } from "@chakra-ui/react";
-import Card from "../component/Card";
-import { useSelector } from "react-redux";
+import Card from "component/card/Card";
+import { useIndonesiaNews } from "./useIndonesiaNews";
 
-export default function Saved() {
-  const savedNews = useSelector((state) => state.savedNews);
+export default function Indonesia() {
+  const {newsData} = useIndonesiaNews()
 
   return (
     <Container maxW={'full'}>
@@ -16,11 +16,11 @@ export default function Saved() {
         align={'center'} 
         justify={'center'}
         fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}>
-        Saved
+        News
       </Heading>
       <Grid mx={40} templateColumns="repeat(3, 1fr)" gap={10}>
-        {savedNews
-          ? savedNews.map((item, id) => <Card newsDataItem={item} key={id} />)
+        {newsData
+          ? newsData.map((item, id) => <Card newsDataItem={item} key={id} />)
           : null}
       </Grid>
     </Container>

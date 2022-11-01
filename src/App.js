@@ -1,6 +1,6 @@
 import { ChakraProvider } from "@chakra-ui/react";
-import Navbar from "./component/Navbar";
-import Router from "./Router";
+import Navbar from "component/navbar/Navbar";
+import Router from "pages/Router";
 
 function App() {
   return (

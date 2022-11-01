@@ -1,5 +1,5 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import savedNews from "./slice/savedNewsSlice";
+import savedNews from "./slice/savedNews";
 import {
   persistStore,
   persistReducer,
@@ -11,14 +11,19 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import newsByQuery from "./slice/newsByQuery";
+import newsByCountry from "./slice/newsByCountry";
 
 const reducer = combineReducers({
   savedNews: savedNews,
+  newsByQuery: newsByQuery,
+  newsByCountry: newsByCountry,
 });
 
 const persistConfig = {
   key: "root",
   storage,
+  // blacklist: ["newsByQuery", "newsByCountry"],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducer);

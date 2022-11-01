@@ -1,18 +1,16 @@
+import React from "react";
 import {
   Box,
   Flex,
   HStack,
   IconButton,
   Button,
-  Menu,
-  MenuButton,
-  useDisclosure,
   useColorModeValue,
   Input,
-  useColorMode,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useNavbar } from "./useNavbar";
 
 const Links = ["Programming", "COVID-19", "Saved"];
 
@@ -23,16 +21,16 @@ const NavLink = ({ children }) => (
 );
 
 export default function Navbar() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const { colorMode, toggleColorMode } = useColorMode();
-  const navigate = useNavigate();
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-
-    navigate(`/search/${data.get("search")}`)
-  };
+  const {
+    isOpen,
+    onOpen,
+    onClose,
+    colorMode,
+    searchValue,
+    setSearchValue,
+    handleSubmit,
+    toggleColorMode,
+  } = useNavbar();
 
   return (
     <Box bg={useColorModeValue("gray.100", "gray.900")} px={"40"}>
@@ -52,17 +50,6 @@ export default function Navbar() {
             ))}
           </HStack>
         </HStack>
-        <Flex alignItems={"center"}>
-          <Menu>
-            <MenuButton
-              as={Button}
-              rounded={"full"}
-              variant={"link"}
-              cursor={"pointer"}
-              minW={0}
-            ></MenuButton>
-          </Menu>
-        </Flex>
         <form
           onSubmit={(e) => handleSubmit(e)}
           style={{ display: "flex", alignItems: "center" }}
@@ -71,15 +58,17 @@ export default function Navbar() {
             width={200}
             placeholder="Search..."
             mr={2}
-            backgroundColor={'Background'}
+            backgroundColor={"Background"}
             name="search"
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
           />
           <Button type="submit" colorScheme="blue">
             Cari Berita
           </Button>{" "}
         </form>
         <Button onClick={toggleColorMode}>
-            {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+          {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
         </Button>
       </Flex>
     </Box>
